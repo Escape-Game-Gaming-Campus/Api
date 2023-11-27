@@ -33,4 +33,5 @@
 
 # IDE
 *.vs
-[Xx]64/
+[Xx]64/Debug/
+*/[Xx]64/Debug/
