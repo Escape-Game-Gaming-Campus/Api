@@ -13,19 +13,22 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Window-NativeFunc">
+      <UniqueIdentifier>{5f5cfff9-386d-42e2-8ffa-08c772d2cf39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="EscapeGame_GamingCampus.h">
+      <Filter>Fichiers d%27en-tête\Window-NativeFunc</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="framework.h">
+      <Filter>Fichiers d%27en-tête\Window-NativeFunc</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Window-NativeFunc</Filter>
     </ClInclude>
-    <ClInclude Include="EscapeGame_GamingCampus.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="targetver.h">
+      <Filter>Fichiers d%27en-tête\Window-NativeFunc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -45,5 +48,10 @@
     <Image Include="EscapeGame_GamingCampus.ico">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="idd_logi.bin">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>
