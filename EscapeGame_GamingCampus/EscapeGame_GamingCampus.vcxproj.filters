@@ -24,17 +24,17 @@
     <ClInclude Include="Resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Logiciel-Mere.h">
+    <ClInclude Include="EscapeGame_GamingCampus.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Logiciel-Mere.cpp">
+    <ClCompile Include="EscapeGame_GamingCampus.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Logiciel-Mere.rc">
+    <ResourceCompile Include="EscapeGame_GamingCampus.rc">
       <Filter>Fichiers de ressources</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -42,7 +42,7 @@
     <Image Include="small.ico">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="Logiciel-Mere.ico">
+    <Image Include="EscapeGame_GamingCampus.ico">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>

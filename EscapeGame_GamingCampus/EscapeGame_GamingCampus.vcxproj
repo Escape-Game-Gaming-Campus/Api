@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{297e26ef-09ab-4334-b6d5-ad747d171754}</ProjectGuid>
-    <RootNamespace>LogicielMere</RootNamespace>
+    <ProjectGuid>{665e1e29-708e-4fe7-8173-8cbb6c7b4cca}</ProjectGuid>
+    <RootNamespace>EscapeGameGamingCampus</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,19 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EscapeGame_GamingCampus.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Logiciel-Mere.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Logiciel-Mere.cpp" />
+    <ClCompile Include="EscapeGame_GamingCampus.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Logiciel-Mere.rc" />
+    <ResourceCompile Include="EscapeGame_GamingCampus.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Logiciel-Mere.ico" />
+    <Image Include="EscapeGame_GamingCampus.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
