@@ -69,7 +69,7 @@ int WINAPI WinMain(
         szTitle,
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT,
-        600, 600,
+        500, 500,
         NULL,
         NULL,
         hInstance,
