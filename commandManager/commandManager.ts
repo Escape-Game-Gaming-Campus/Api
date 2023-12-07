@@ -1,11 +1,11 @@
 import { readdirSync } from "fs";
 import { Command } from "./command";
-import { COLOR_TEXT, FORMAT_TEXT } from "../utils/colors";
+import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../utils/colors";
 import { APPPort, app } from "..";
 import CommandType from "../utils/commandType";
 
 export default function CommandManager() {
-    console.log("Loading commands...\n")
+    console.log(BG_COLOR_TEXT.RED + "Loading commands..." + FORMAT_TEXT.RESET + "\n")
     readdirSync("./commandManager/commands/").forEach(file => {
         if(!file.endsWith(".js")) return;
         let cmd : Command = require("./commands/" + file)

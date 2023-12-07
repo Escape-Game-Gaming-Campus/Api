@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import CommandManager from "./commandManager/commandManager";
+import pusherManager from './pusherManager/pusherManager';
+import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from './utils/colors';
 
 const Pusher = require("pusher");
 
@@ -18,7 +20,8 @@ app.use(express.json());
 app.use(cors());
 
 CommandManager();
+pusherManager.void();
 
 app.listen(APPPort, () => {
-    console.log(`Server is running on port ${APPPort}`);
+    console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
 });
