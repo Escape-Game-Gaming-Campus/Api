@@ -3,6 +3,7 @@ import cors from 'cors';
 import CommandManager from "./commandManager/commandManager";
 import pusherManager from './pusherManager/pusherManager';
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from './utils/colors';
+import Object from './utils/object';
 
 const Pusher = require("pusher");
 
@@ -25,3 +26,5 @@ pusherManager.void();
 app.listen(APPPort, () => {
     console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
 });
+
+export var inventory: Object[] = [];

@@ -9,11 +9,11 @@ class pusherManger {
 
     constructor() {
         console.log(BG_COLOR_TEXT.RED + "Loading pushers..." + FORMAT_TEXT.RESET + "\n")
-        readdirSync("./commandManager/commands/").forEach(file => {
+        readdirSync("./pusherManager/pushers/").forEach(file => {
             if (!file.endsWith(".js")) return;
             let psh: pusherClass = require("./pushers/" + file)
             this.allPushers.push(psh);
-            console.log(" Added pusher event '" + COLOR_TEXT.BLUE + psh.eventName + FORMAT_TEXT.RESET + "'\nChannel: " + COLOR_TEXT.MAGENTA + psh.channel + FORMAT_TEXT.RESET + "\ndesc: " + psh.description + "\n")
+            console.log(" Added pusher event '" + COLOR_TEXT.BLUE + psh.eventName + FORMAT_TEXT.RESET + "'\n" + FORMAT_TEXT.UNDERSCORE + "Channel" + FORMAT_TEXT.RESET + ": " + COLOR_TEXT.MAGENTA + psh.channel + FORMAT_TEXT.RESET + "\n" + FORMAT_TEXT.UNDERSCORE + "desc" + FORMAT_TEXT.RESET + ": " + psh.description + "\n")
         })
     }
 

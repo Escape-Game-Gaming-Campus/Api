@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import CommandType from "../../utils/commandType";
 import { Command } from "../command";
-import { pusher } from "../..";
 import pusherManager from "../../pusherManager/pusherManager";
 
 class HelloWorld extends Command {
