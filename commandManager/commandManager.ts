@@ -21,9 +21,10 @@ export default function CommandManager() {
               timeZoneName: 'short'
             };
             const formatDate = new Intl.DateTimeFormat('fr-FR', options).format(dateActuelle);
-            
+
             cmd.run(req, res)
             console.log(COLOR_TEXT.GRAY + "[" + formatDate.split(" ").join("-") + "] " + COLOR_TEXT.MAGENTA + res.statusCode + " " + COLOR_TEXT.CYAN + req.method + FORMAT_TEXT.RESET + " " + COLOR_TEXT.YELLOW + req.path + FORMAT_TEXT.RESET + " from " + COLOR_TEXT.GREEN + req.ip + FORMAT_TEXT.RESET)
+            return;
         })
         console.log("  Added command '" + COLOR_TEXT.CYAN + cmd.name + FORMAT_TEXT.RESET + "'\n" + FORMAT_TEXT.UNDERSCORE + "type" + FORMAT_TEXT.RESET + ": " + COLOR_TEXT.MAGENTA + CommandType[cmd.type] + FORMAT_TEXT.RESET + "\n" + FORMAT_TEXT.UNDERSCORE + "desc" + FORMAT_TEXT.RESET + ": " + cmd.description + "\n" + FORMAT_TEXT.UNDERSCORE + "path" + FORMAT_TEXT.RESET + ": http://localhost:" + APPPort + cmd.path + "\n")
     })
