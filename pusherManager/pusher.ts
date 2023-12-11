@@ -1,4 +1,4 @@
-import pusherChannels from "../utils/pusherChannels";
+import pusherChannels from "../constants/pusherChannels";
 
 export default class pusherClass {
     public channel: pusherChannels = pusherChannels.DEV;

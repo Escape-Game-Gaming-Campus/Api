@@ -1,4 +1,4 @@
-import CommandType from "../utils/commandType";
+import CommandType from "../constants/commandType";
 import { Request, Response } from "express";
 
 export class Command {

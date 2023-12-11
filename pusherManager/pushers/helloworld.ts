@@ -1,5 +1,5 @@
 import pusherClass from "../pusher";
-import pusherChannels from "../../utils/pusherChannels";
+import pusherChannels from "../../constants/pusherChannels";
 
 class helloWorldPusher extends pusherClass {
     constructor() {super();}

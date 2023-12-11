@@ -1,8 +1,8 @@
 import { readdirSync } from "fs";
 import { Command } from "./command";
-import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../utils/colors";
+import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import { APPPort, app } from "..";
-import CommandType from "../utils/commandType";
+import CommandType from "../constants/commandType";
 
 export default function CommandManager() {
     console.log(BG_COLOR_TEXT.RED + "Loading commands..." + FORMAT_TEXT.RESET + "\n")

@@ -1,8 +1,9 @@
 import { readdirSync } from "fs";
-import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../utils/colors";
+import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import { APPPort, app, pusher } from "..";
-import CommandType from "../utils/commandType";
+import CommandType from "../constants/commandType";
 import pusherClass from "./pusher";
+import pusherChannels from "../constants/pusherChannels";
 
 class pusherManger {
     allPushers: pusherClass[] = [];
@@ -13,7 +14,7 @@ class pusherManger {
             if (!file.endsWith(".js")) return;
             let psh: pusherClass = require("./pushers/" + file)
             this.allPushers.push(psh);
-            console.log(" Added pusher event '" + COLOR_TEXT.BLUE + psh.eventName + FORMAT_TEXT.RESET + "'\n" + FORMAT_TEXT.UNDERSCORE + "Channel" + FORMAT_TEXT.RESET + ": " + COLOR_TEXT.MAGENTA + psh.channel + FORMAT_TEXT.RESET + "\n" + FORMAT_TEXT.UNDERSCORE + "desc" + FORMAT_TEXT.RESET + ": " + psh.description + "\n")
+            console.log(" Added pusher event '" + COLOR_TEXT.BLUE + psh.eventName + FORMAT_TEXT.RESET + "'\n" + FORMAT_TEXT.UNDERSCORE + "Channel" + FORMAT_TEXT.RESET + ": " + COLOR_TEXT.MAGENTA + Object.keys(pusherChannels)[Object.values(pusherChannels).findIndex((e, i) => psh.channel === e)] + FORMAT_TEXT.RESET + "\n" + FORMAT_TEXT.UNDERSCORE + "desc" + FORMAT_TEXT.RESET + ": " + psh.description + "\n")
         })
     }
 

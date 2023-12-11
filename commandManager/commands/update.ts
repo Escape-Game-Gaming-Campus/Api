@@ -3,19 +3,21 @@ import CommandType from "../../constants/commandType";
 import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
 
-class HelloWorld extends Command {
+class Update extends Command {
   constructor() { super(); }
 
-  public name: string = "Hello world";
-  public description: string = "Sends a hello world message to the client";
-  public path: string = "/helloWorld";
+  public name: string = "Update";
+  public description: string = "Updates the client";
+  public path: string = "/update";
   public type: CommandType = CommandType.get;
 
   run(req: Request, res: Response) {
     pusherManager.executePusher("helloWorld");
+    pusherManager.executePusher("updateInventory");
 
-    res.status(200).json({ message: "Hello world!" });
+    if (res === null) return console.log("Clients updated succesfully");
+    res.status(200).json({ message: "Clients updated succesfully" });
   }
 }
 
-export = new HelloWorld();
+export = new Update();
