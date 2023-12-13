@@ -4,6 +4,7 @@ import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
 import { getInventory } from "../../utils/inventory";
 import { objs } from "../../constants/object";
+import { VarType } from "../../utils/doc";
 
 class InventoryAdd extends Command {
   constructor() { super(); }
@@ -12,6 +13,8 @@ class InventoryAdd extends Command {
   public description: string = "Adds an item to the inventory";
   public path: string = "/inv/add";
   public type: CommandType = CommandType.post;
+  public data: { objs: { name: VarType, uuid: VarType }[] } = { objs: [{ name: { type: "string", description: "The name of the object to add", optional: true }, uuid: { type: "number", description: "The uuid of the object to add", optional: true } }] };
+  public out: { success: VarType, message?: VarType } = { success: { type: "boolean", description: "If the item was added", optional: false }, message: { type: "string", description: "The message to display", optional: true } };
 
   run(req: Request, res: Response) {
     var endForeach = false;

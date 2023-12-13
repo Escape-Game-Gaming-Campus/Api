@@ -3,6 +3,7 @@ import CommandType from "../../constants/commandType";
 import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
 import { psdPC } from "../../utils/enigms/ddust2/passwordpc";
+import { VarType } from "../../utils/doc";
 
 class Ddust2TryPsd extends Command {
   constructor() { super(); }
@@ -11,6 +12,8 @@ class Ddust2TryPsd extends Command {
   public description: string = "Try a password to unlock Totoro";
   public path: string = "/ddust2/tryPsd";
   public type: CommandType = CommandType.post;
+  public data: { psd: VarType } = { psd: { type: "string", description: "The password to try", optional: false } };
+  public out: { message: VarType } = { message: { type: "string", description: "The message to display", optional: false } };
 
   run(req: Request, res: Response) {
     if (req.body.psd === undefined) {

@@ -1,3 +1,4 @@
+import { VarType } from "../utils/doc";
 import * as AppConfig from "./appConfig.json";
 
 type Object = 
@@ -5,6 +6,16 @@ type Object =
     name : string,
     UUID : number,
     texture : string,
+}
+
+export var ObjectVarType: {
+    name : VarType,
+    UUID : VarType,
+    texture : VarType,
+} = {
+    name : { type: "string", description: "The name of the object", optional: false },
+    UUID : { type: "number", description: "The UUID of the object", optional: false },
+    texture : { type: "string", description: "The texture of the object", optional: false },
 }
 
 export default Object;

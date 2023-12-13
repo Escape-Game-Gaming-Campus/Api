@@ -8,6 +8,8 @@ export class Command {
     public description: string = "An error occured, that value is not set";
     public path: string = "/500";
     public type: CommandType = CommandType.get;
+    public data: any = {};
+    public out: any = {};
 
     public run(req: Request, res: Response): void {
         res.status(500).json({ message: "An error occured, that command is not set" });
