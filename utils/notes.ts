@@ -1,8 +1,7 @@
-var notes = "";
+class Notes {
+    public notes : string = "";
 
-export function changeNotes (newNotes : string)
-{
-    notes = newNotes;
+    constructor() {};
 }
 
-export default notes;
+export var getNotes = new Notes();

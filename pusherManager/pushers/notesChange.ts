@@ -1,6 +1,6 @@
 import pusherClass from "../pusher";
 import pusherChannels from "../../constants/pusherChannels";
-import notes from "../../utils/notes";
+import { getNotes } from "../../utils/notes";
 
 class NotesChangePusher extends pusherClass {
     constructor() {super();}
@@ -10,7 +10,7 @@ class NotesChangePusher extends pusherClass {
     public description: string = "Change notes informations from players";
     
     run(data: any): object {
-        return { notes: notes };
+        return { notes: getNotes.notes };
     }
 }
 

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import CommandType from "../../constants/commandType";
 import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
-import notes, { changeNotes } from "../../utils/notes";
+import { getNotes } from "../../utils/notes";
 
 class NotesChanges extends Command {
   constructor() { super(); }
@@ -24,7 +24,7 @@ class NotesChanges extends Command {
       return
     }
 
-    changeNotes(req.body.notes);
+    getNotes.notes = req.body.notes;
     pusherManager.executePusher("notesChange");
 
     res.status(200).json({ message: "Notes Changed" });
