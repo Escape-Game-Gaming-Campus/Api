@@ -4,7 +4,7 @@ import { APPPort, app, pusher } from "..";
 import CommandType from "../constants/commandType";
 import pusherClass from "./pusher";
 import pusherChannels from "../constants/pusherChannels";
-import AppConfig from "../constants/appConfig.json";
+import * as AppConfig from "../constants/appConfig.json";
 
 class pusherManger {
     allPushers: pusherClass[] = [];

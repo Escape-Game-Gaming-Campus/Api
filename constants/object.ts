@@ -1,4 +1,4 @@
-import AppConfig from "./AppConfig.json";
+import * as AppConfig from "./appConfig.json";
 
 type Object = 
 {

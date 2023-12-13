@@ -3,7 +3,7 @@ import { Command } from "./command";
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import { APPPort, app } from "..";
 import CommandType from "../constants/commandType";
-import AppConfig from "../constants/appConfig.json";
+import * as AppConfig from "../constants/appConfig.json";
 
 export default function CommandManager() {
     console.log(BG_COLOR_TEXT.RED + "Loading commands..." + FORMAT_TEXT.RESET)
@@ -34,7 +34,7 @@ export default function CommandManager() {
             cmd.run(req, res)
             if (AppConfig.DetailLogs)
             {
-                console.log(COLOR_TEXT.GRAY + "[" + formatDate.split(" ").join("-") + "] " + COLOR_TEXT.GREEN + "Command" + FORMAT_TEXT.RESET + " | " + COLOR_TEXT.GRAY + " Ended " + FORMAT_TEXT.RESET + " | " + COLOR_TEXT.CYAN + req.method + FORMAT_TEXT.RESET + " " + COLOR_TEXT.YELLOW + req.path + " " + COLOR_TEXT.MAGENTA + res.statusCode + FORMAT_TEXT.RESET + " from " + COLOR_TEXT.GREEN + req.ip + FORMAT_TEXT.RESET)
+                console.log(COLOR_TEXT.GRAY + "[" + formatDate.split(" ").join("-") + "] " + COLOR_TEXT.GREEN + "Command" + FORMAT_TEXT.RESET + " | " + COLOR_TEXT.GRAY + " Ended " + FORMAT_TEXT.RESET + " | " + COLOR_TEXT.CYAN + req.method + FORMAT_TEXT.RESET + " " + COLOR_TEXT.YELLOW + req.path + " " + COLOR_TEXT.MAGENTA + res.statusCode + FORMAT_TEXT.RESET + " from " + COLOR_TEXT.GREEN + req.ip + COLOR_TEXT.GRAY + (JSON.stringify(res.headersSent).length > 50 ? "\n" + " ".repeat(28) + JSON.stringify(res.headersSent, null, 2).split("\n").join("\n" + " ".repeat(28)) : " " + JSON.stringify(res.headersSent)) + FORMAT_TEXT.RESET)
             } else {
                 console.log(COLOR_TEXT.GRAY + "[" + formatDate.split(" ").join("-") + "] " + COLOR_TEXT.GREEN + "Command" + FORMAT_TEXT.RESET + " | " + COLOR_TEXT.CYAN + req.method + FORMAT_TEXT.RESET + " " + COLOR_TEXT.YELLOW + req.path + " " + COLOR_TEXT.MAGENTA + res.statusCode + FORMAT_TEXT.RESET + " from " + COLOR_TEXT.GREEN + req.ip + FORMAT_TEXT.RESET)
             }
