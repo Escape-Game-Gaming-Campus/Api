@@ -5,7 +5,7 @@ import pusherManager from './pusherManager/pusherManager';
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from './constants/colors';
 import Object from './constants/object';
 import { genDoc } from './utils/doc';
-import { writeFile } from 'fs';
+import { readFileSync, writeFile } from 'fs';
 import * as AppConfig from './constants/appConfig.json';
 
 const Pusher = require("pusher");
@@ -33,17 +33,25 @@ app.listen(APPPort, () => {
       return console.error(err);
     }
     if (AppConfig.DetailLogs) {
-      console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation created!" + FORMAT_TEXT.RESET);
+      console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for commands created!" + FORMAT_TEXT.RESET);
     }
     writeFile("../../.doc/Writerside/topics/Pusher.md", doc.getDoc()[1], function (err) {
       if (err) {
         return console.error(err);
       }
       if (AppConfig.DetailLogs) {
-        console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation created!" + FORMAT_TEXT.RESET);
+        console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for pusher created!" + FORMAT_TEXT.RESET);
       }
-      console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
-      require("./commandManager/commands/update").run(null, null);
+      writeFile("../../.doc/Writerside/snippet/AppConfig.json", readFileSync("../constants/AppConfig.json", "utf8"), function (err) {
+        if (err) {
+          return console.error(err);
+        }
+        if (AppConfig.DetailLogs) {
+          console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for AppConfig.json created!" + FORMAT_TEXT.RESET);
+        }
+        console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
+        require("./commandManager/commands/update").run(null, null);
+      });
     });
   });
 });

@@ -1,4 +1,4 @@
-import { readdirSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import pusherClass from "../pusherManager/pusher";
 import pusherChannels from "../constants/pusherChannels";
 import { Command } from "../commandManager/command";
@@ -19,14 +19,25 @@ export class genDoc {
 
     constructor() {
         var cmds: Command[] = [];
+        var pshsInCmds: {[cmdName: string]: string[]} = {};
         readdirSync("./commandManager/commands/").forEach(file => {
             if (!file.endsWith(".js")) return;
+            function readFile(data: string, cmd: Command) {
+                var dt = data.split("pusherManager_1.default.executePusher(\"");
+                dt.shift();
+                dt.forEach(e => {
+                    var pshName = e.split("\"")[0];
+                    if (!pshsInCmds[cmd.name]) pshsInCmds[cmd.name] = [];
+                    pshsInCmds[cmd.name].push(pshName);
+                })
+            }
+            const fil = readFileSync("./commandManager/commands/" + file, "utf8")
             let cmd: Command = require("../commandManager/commands/" + file)
+            readFile(fil, cmd);
             cmds.push(cmd);
         })
         Object.keys(CommandType).forEach(type => {
             var oneFinded = false;
-            console.log(type)
             cmds.forEach(cmdFinded => {
                 if (Object.keys(CommandType)[Object.values(CommandType).findIndex((e, i) => cmdFinded.type === e)] == type) {
                     if (!oneFinded) {
@@ -45,6 +56,14 @@ export class genDoc {
                     temp = this.getGlobalType(cmdFinded.out)
                     if (temp !== "undefined") this.docCmd += "\n\n" + temp
                     else this.docCmd += "Aucune\n"
+                    this.docCmd += "- __Utilisation de Pusher__: "
+                    pshsInCmds[cmdFinded.name] = pshsInCmds[cmdFinded.name].map(e => {
+                        return "[" + e + "](Pusher.md#" + e.toLowerCase() + ")"
+                    })
+                    if (pshsInCmds[cmdFinded.name].length > 0) {
+                        this.docCmd += pshsInCmds[cmdFinded.name].join(" ") + "\n"
+                    }
+                    else this.docCmd += "Non\n"
                 }
             })
         })
