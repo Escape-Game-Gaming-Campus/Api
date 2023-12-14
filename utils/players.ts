@@ -19,7 +19,7 @@ class Players {
                 alreadyNumber = e.ID
             });
         }
-        this.array.push({ "ID": alreadyNumber + 1, "transform": object.transform });
+        this.array.push({ "ID": alreadyNumber + 1, "name" : object.name, "transform": object.transform});
         this.size += 1;
     }
 

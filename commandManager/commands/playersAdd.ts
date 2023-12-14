@@ -22,7 +22,7 @@ class PlayersAdd extends Command {
       res.status(400).json({ success: false, message: "Parameter objs is empty" })
       return;
     }
-    req.body.players.forEach((element : {"ID" : number, "transform" : any}) => {
+    req.body.players.forEach((element : {"ID" : number, "name" : string, "transform" : any}) => {
         getPlayers.insert(element);
         updated = true;
     });
