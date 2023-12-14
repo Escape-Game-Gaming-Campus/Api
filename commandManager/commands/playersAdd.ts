@@ -29,7 +29,7 @@ class PlayersAdd extends Command {
 
     if (updated) {
       pusherManager.executePusher("updatePlayers");
-      res.status(200).json({ success: true });
+      res.status(200).json({ success: true , message: "Player added" });
     } else {
       res.status(404).json({ success: false, message: "Player not found" });
     }

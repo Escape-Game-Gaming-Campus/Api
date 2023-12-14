@@ -44,8 +44,8 @@ class Players {
         }
     }
 
-    public sortByPLayeriD() {
-        this.array.sort((a, b) => {
+    public sortByPLayeriD() : Player[] {
+        return this.array.sort((a, b) => {
             return a.ID - b.ID;
         });
     }
