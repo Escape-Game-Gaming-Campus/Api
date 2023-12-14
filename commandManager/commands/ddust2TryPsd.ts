@@ -9,11 +9,11 @@ class Ddust2TryPsd extends Command {
   constructor() { super(); }
 
   public name: string = "Try PasswordPC";
-  public description: string = "Try a password to unlock Totoro";
+  public description: string = "Permet de vérifier si le mot de passe pour débloquer Totoro est bon";
   public path: string = "/ddust2/tryPsd";
   public type: CommandType = CommandType.post;
-  public data: { psd: VarType } = { psd: { type: "string", description: "The password to try", optional: false } };
-  public out: { message: VarType } = { message: { type: "string", description: "The message to display", optional: false } };
+  public data: { psd: VarType } = { psd: { type: "string", description: "Mot de passe a essayer", optional: false } };
+  public out: { message: VarType } = { message: { type: "string", description: "message d'erreur/de succès", optional: false } };
 
   run(req: Request, res: Response) {
     if (req.body.psd === undefined) {

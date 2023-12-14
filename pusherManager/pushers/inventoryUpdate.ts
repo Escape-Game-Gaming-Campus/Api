@@ -8,11 +8,11 @@ class InventoryUpdatePusher extends pusherClass {
     
     public channel: pusherChannels = pusherChannels.INVENTORY;
     public eventName: string = "updateInventory";
-    public description: string = "Sends the updated inventory to the client";
+    public description: string = "Envoye la liste des objets de l'inventaire à jour";
     public data: undefined = undefined;
     public out: (typeof ObjectVarType)[] = [ObjectVarType];
     
-    run(data: any): Object[] {
+    run(data: any, force: boolean): Object[] {
         getInventory.sortByUUID();
         return getInventory.array;
     }

@@ -3,14 +3,17 @@ import CommandType from "../../constants/commandType";
 import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
 import { getNotes } from "../../utils/notes";
+import { VarType } from "../../utils/doc";
 
 class NotesChanges extends Command {
   constructor() { super(); }
 
   public name: string = "Notes changes";
-  public description: string = "Change notes informations from players";
+  public description: string = "Change les notes de l'équipe";
   public path: string = "/notesChanges";
   public type: CommandType = CommandType.post;
+  public data: { notes: VarType } = { notes: { type: "string", description: "La nouvelle note de l'équipe", optional: false } };
+  public out: { message: VarType } = { message: { type: "string", description: "message d'erreur/de succès", optional: false } };
 
   run(req: Request, res: Response) {
     if (req.body.notes == undefined)

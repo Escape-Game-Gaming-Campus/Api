@@ -49,13 +49,13 @@ export class genDoc {
                     this.docCmd += cmdFinded.description + "\n\n"
                     this.docCmd += "- __Path__: [" + cmdFinded.path + "](" + AppConfig.API_HOST + ":" + AppConfig.API_PORT + cmdFinded.path + ")\n"
                     this.docCmd += "- __Input__: "
-                    var temp = this.getGlobalType(cmdFinded.data)
+                    var temp = this.getType(cmdFinded.data)
                     if (temp !== "undefined") this.docCmd += "\n\n" + temp
-                    else this.docCmd += "Aucune\n"
+                    else this.docCmd += "Aucun\n"
                     this.docCmd += "- __Output__: "
-                    temp = this.getGlobalType(cmdFinded.out)
+                    temp = this.getType(cmdFinded.out)
                     if (temp !== "undefined") this.docCmd += "\n\n" + temp
-                    else this.docCmd += "Aucune\n"
+                    else this.docCmd += "Aucun\n"
                     this.docCmd += "- __Utilisation de Pusher__: "
                     pshsInCmds[cmdFinded.name] = pshsInCmds[cmdFinded.name].map(e => {
                         return "[" + e + "](Pusher.md#" + e.toLowerCase() + ")"
@@ -87,13 +87,13 @@ export class genDoc {
                     this.docPsh += "\n\n### **" + pusherFinded.eventName + "**\n\n"
                     this.docPsh += pusherFinded.description + "\n\n"
                     this.docPsh += "- __Input__: "
-                    var temp = this.getGlobalType(pusherFinded.data)
+                    var temp = this.getType(pusherFinded.data)
                     if (temp !== "undefined") this.docPsh += "\n\n" + temp
-                    else this.docPsh += "Aucune\n"
+                    else this.docPsh += "Aucun\n"
                     this.docPsh += "- __Output__: "
-                    temp = this.getGlobalType(pusherFinded.out)
+                    temp = this.getType(pusherFinded.out)
                     if (temp !== "undefined") this.docPsh += "\n\n" + temp
-                    else this.docPsh += "Aucune\n"
+                    else this.docPsh += "Aucun\n"
                 }
             })
         })
@@ -103,8 +103,52 @@ export class genDoc {
         return [this.docCmd, this.docPsh];
     }
 
-    public getGlobalType(obj: any | VarType): string {
-        var res: string | "" = this.getType("{ }", obj);
+    public getType(obj: any | VarType): string {
+        if (obj === undefined) return "undefined";
+
+        var nobj = JSON.parse(JSON.stringify(obj));
+        const table = this.getTableType(nobj);
+        var mobj = JSON.parse(JSON.stringify(obj));
+        const json = this.getJsonType(mobj);
+
+        if (table === "undefined" && json === "undefined") return "undefined";
+
+        var res: string = "<tabs group=\"JsonOrTable\">\n  <tab group-key=\"Table\" title=\"Tableau\">\n\n";
+        res += table === "undefined" ? "Aucun" : table;
+        res += "\n  </tab><tab group-key=\"Json\" title=\"JSON\">\n\n";
+        res += json === "undefined" ? "Aucun" : json;
+        return res + "\n  </tab>\n</tabs>\n\n"
+    }
+
+    public getJsonType(obj: any | VarType): string {
+        if (obj === undefined) return "undefined";
+        if (typeof obj === "object") {
+            var isVarType: boolean = false;
+            try {
+                isVarType = typeof obj.type === "string" && typeof obj.description === "string" && typeof obj.optional === "boolean"
+            } catch (err) {}
+
+            if (isVarType) {
+                return obj.type;
+            } else {
+                var res: string = "{\n";
+                Object.keys(obj).forEach(key => {
+                    var temp = this.getJsonType(obj[key]).replace("```json\n", "").replace("\n```", "");
+                    try {
+                        obj[key] = JSON.parse(temp);
+                    } catch (err) {
+                        obj[key] = temp;
+                    }
+                })
+            }
+
+        }
+        var res: string | "" = JSON.stringify(obj, null, 2);
+        return "```json\n" + res + "\n```"
+    }
+
+    public getTableType(obj: any | VarType): string {
+        var res: string | "" = this.getRowTableType("{ }", obj);
         if (res === "") return "undefined";
         var isVarType: boolean = false;
         try {
@@ -122,7 +166,7 @@ export class genDoc {
     }
 
     // récupère le type d'un objet, et le retourne sous forme de tableau md avec le nom, le type de résultat, la description et s'il est requis ou non
-    private getType(name: string, obj: any | VarType, childNum: number = 0): string {
+    private getRowTableType(name: string, obj: any | VarType, childNum: number = 0): string {
         var res: string = "";
         var isVarType: boolean = false;
         try {
@@ -138,13 +182,13 @@ export class genDoc {
             res += " |  |  |\n"
             Object.keys(obj).forEach(key => {
                 if (obj[0] === undefined) {
-                    res += this.getType(key, obj[key], childNum + 1)
+                    res += this.getRowTableType(key, obj[key], childNum + 1)
                 } else {
-                    res += this.getType("[ ]", obj[key], childNum + 1)
+                    res += this.getRowTableType("[ ]", obj[key], childNum + 1)
                 }
             })
         }
-        else if (obj != undefined) {
+        else if (isVarType) {
             res += "| " + this.incrementationSymbol[0].repeat(Math.max(0, childNum -1)) + (childNum ? this.incrementationSymbol[1] : "") + " | " + name + " | " + obj.type.replaceAll("|", "OR").replaceAll("[]", "[ ]") + " | " + obj.description + " | " + obj.optional + " |\n"
         }
         else {

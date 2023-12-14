@@ -13,9 +13,9 @@ export var ObjectVarType: {
     UUID : VarType,
     texture : VarType,
 } = {
-    name : { type: "string", description: "The name of the object", optional: false },
-    UUID : { type: "number", description: "The UUID of the object", optional: false },
-    texture : { type: "string", description: "The texture of the object", optional: false },
+    name : { type: "string", description: "Nom de l'objet", optional: false },
+    UUID : { type: "number", description: "UUID de l'objet", optional: false },
+    texture : { type: "string", description: "Lien pour accéder à la texture de l'objet (utiliser de préférence AppConfig.json pour obtenir le lien quand il est set)", optional: false },
 }
 
 export default Object;
