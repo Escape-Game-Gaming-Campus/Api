@@ -19,7 +19,7 @@ class PlayersAdd extends Command {
       return;
     }
     if (req.body.players.length === 0) {
-      res.status(400).json({ success: false, message: "Parameter objs is empty" })
+      res.status(400).json({ success: false, message: "Parameter players is empty" })
       return;
     }
     req.body.players.forEach((element : {"ID" : number, "name" : string, "transform" : any}) => {

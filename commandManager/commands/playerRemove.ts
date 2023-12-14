@@ -19,12 +19,17 @@ class PlayersRemove extends Command {
       return;
     }
     if (req.body.players.length === 0) {
-      res.status(400).json({ success: false, message: "Parameter objs is empty" })
+      res.status(400).json({ success: false, message: "Parameter players is empty" })
       return;
     }
     req.body.players.forEach((element : {"ID" : number, "name" : string, "transform" : any}) => {
-        getPlayers.delete(element);
-        updated = true;
+        getPlayers.array.forEach((e) => {
+          if (element.name === e.name && element.transform === e.transform)
+          {
+            getPlayers.delete(e);
+            updated = true;
+          }
+        })
     });
 
     if (updated) {
