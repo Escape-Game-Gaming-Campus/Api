@@ -4,7 +4,7 @@ type Player =
 {
     ID : number,
     name : string,
-    transform : any,
+    position : Array<number>,
 }
 
 export default Player;

@@ -22,9 +22,9 @@ class PlayersRemove extends Command {
       res.status(400).json({ success: false, message: "Parameter players is empty" })
       return;
     }
-    req.body.players.forEach((element : {"ID" : number, "name" : string, "transform" : any}) => {
+    req.body.players.forEach((element : {"ID" : number, "name" : string, "position" : Array<number>}) => {
         getPlayers.array.forEach((e) => {
-          if (element.name === e.name && element.transform === e.transform)
+          if (element.name === e.name && element.position === e.position)
           {
             getPlayers.delete(e);
             updated = true;

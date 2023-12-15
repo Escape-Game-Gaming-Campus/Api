@@ -12,7 +12,10 @@ class PlayersAdd extends Command {
   public path: string = "/players/add";
   public type: CommandType = CommandType.post;
 
+  private goodVariables: boolean = true;
+
   run(req: Request, res: Response) {
+    this.goodVariables = true;
     var updated = false;
     if (!req.body.players) {
       res.status(400).json({ success: false, message: "Missing parameter: players" })
@@ -22,14 +25,31 @@ class PlayersAdd extends Command {
       res.status(400).json({ success: false, message: "Parameter players is empty" })
       return;
     }
-    req.body.players.forEach((element : {"ID" : number, "name" : string, "transform" : any}) => {
+
+
+    req.body.players.forEach((element: { "ID": number, "name": string, "position": Array<number> }) => {
+      element.position.forEach((pos: any) => {
+        if (typeof pos != "number") {
+          this.goodVariables = false
+        }
+      })
+      console.log(this.goodVariables)
+      if (this.goodVariables) {
         getPlayers.insert(element);
         updated = true;
+      }
+      else
+      {
+        res.status(400).json({ success: false, message: "Position is not an Array<number>" });
+        return;
+      }
     });
+
+    if(!this.goodVariables)return;
 
     if (updated) {
       pusherManager.executePusher("updatePlayers");
-      res.status(200).json({ success: true , message: "Player added" });
+      res.status(200).json({ success: true, message: "Player added" });
     } else {
       res.status(404).json({ success: false, message: "Player not found" });
     }
