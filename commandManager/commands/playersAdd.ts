@@ -33,7 +33,6 @@ class PlayersAdd extends Command {
           this.goodVariables = false
         }
       })
-      console.log(this.goodVariables)
       if (this.goodVariables) {
         getPlayers.insert(element);
         updated = true;

@@ -4,7 +4,7 @@ import { Command } from "../command";
 import { getPlayers } from "../../utils/players";
 import Player from "../../constants/players";
 
-class PlayersAdd extends Command {
+class PlayersGet extends Command {
   constructor() { super(); }
 
   public name: string = "Get players";
@@ -30,4 +30,4 @@ class PlayersAdd extends Command {
   }
 }
 
-export = new PlayersAdd();
+export = new PlayersGet();
