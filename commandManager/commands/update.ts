@@ -20,6 +20,7 @@ class Update extends Command {
     pusherManager.executePusher("notesChange");
     pusherManager.executePusher("updatePlayers");
     pusherManager.executePusher("updateInventory");
+    pusherManager.executePusher("hallWay2TryPsd");
     pusherManager.executePusher("ddust2TryPsd", { psdValid: psdPC.psdValid }, true);
 
     if (res === null) return console.log("Clients updated succesfully");
