@@ -4,8 +4,10 @@ import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
 import { VarType } from "../../utils/doc";
 import { psdKill } from "../../utils/enigms/hallWay2/passwordKill";
+import { getInventory } from "../../utils/inventory";
+import { objs } from "../../constants/object";
 
-class Ddust2TryPsd extends Command {
+class HallWay2TryPsd extends Command {
   constructor() { super(); }
 
   public name: string = "Try PasswordPC";
@@ -17,25 +19,27 @@ class Ddust2TryPsd extends Command {
 
   run(req: Request, res: Response) {
     if (req.body.psd === undefined) {
-        res.status(400).json({ message: "Missing parameter: psd" });
-        return;
+      res.status(400).json({ message: "Missing parameter: psd" });
+      return;
     }
     if (typeof req.body.psd !== "string") {
-        res.status(400).json({ message: "psd is not a string" });
-        return;
+      res.status(400).json({ message: "psd is not a string" });
+      return;
     }
     if (req.body.psd.length != 4) {
-        res.status(400).json({ message: "wrong size of psd" });
-        return;
+      res.status(400).json({ message: "wrong size of psd" });
+      return;
     }
     var psdValid = false;
     if (req.body.psd === psdKill.psd) {
-        psdValid = true;
+      psdValid = true;
+      getInventory.insert(objs[1]); //add ampoule rouge
+      pusherManager.executePusher("updateInventory");
     }
-    pusherManager.executePusher("hallWay2TryPsd", {psdValid: psdValid});
+    pusherManager.executePusher("hallWay2TryPsd", { psdValid: psdValid });
 
     res.status(202).json({ message: "Test in progress" });
   }
 }
 
-export = new Ddust2TryPsd();
+export = new HallWay2TryPsd();
