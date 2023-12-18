@@ -3,6 +3,7 @@ import CommandType from "../../constants/commandType";
 import { Command } from "../command";
 import { getPlayers } from "../../utils/players";
 import Player from "../../constants/players";
+import pusherManager from "../../pusherManager/pusherManager";
 
 class PlayersGet extends Command {
   constructor() { super(); }
@@ -15,6 +16,7 @@ class PlayersGet extends Command {
   run(req: Request, res: Response) {
     if (!req.body.ID)
     {
+      pusherManager.executePusher("updatePlayers");
       res.status(200).json({players : getPlayers.sortByPLayeriD(), message: "Players get"});
     }
     else 
@@ -22,6 +24,7 @@ class PlayersGet extends Command {
       getPlayers.sortByPLayeriD().forEach((el : Player) => {
         if (el.ID ==req.body.ID)
         {
+          pusherManager.executePusher("updatePlayers");
           res.status(200).json({players : el, message: "Player get"});
           return;
         }
