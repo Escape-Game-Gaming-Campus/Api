@@ -14,7 +14,7 @@ class PlayersGet extends Command {
   public path: string = "/players/get";
   public type: CommandType = CommandType.get;
   public data: { ID: VarType, name: VarType } = { ID: {type: "number", description: "L'id du player à get", optional: true}, name: {type: "string", description: "Le nom du player à get", optional: true} };
-  public out: { player : [{ ID: VarType, name: VarType, position: VarType }], message: VarType } = { player: [{ ID: {type: "number", description: "L'id du player get", optional: false}, name: {type: "string", description: "le nom du player", optional: false}, position: {type: "number[]", description: "Liste de 3 valeurs tels un Vect3 correspondant au positions du joueur", optional: false} }], message: { type: "string", description: "message d'erreur/de succès", optional: false } };
+  public out: { players : [{ ID: VarType, name: VarType, position: VarType }], message: VarType } = { players: [{ ID: {type: "number", description: "L'id du player get", optional: false}, name: {type: "string", description: "le nom du player", optional: false}, position: {type: "number[]", description: "Liste de 3 valeurs tels un Vect3 correspondant au positions du joueur", optional: false} }], message: { type: "string", description: "message d'erreur/de succès", optional: false } };
 
   run(req: Request, res: Response) {
     pusherManager.executePusher("updatePlayers");

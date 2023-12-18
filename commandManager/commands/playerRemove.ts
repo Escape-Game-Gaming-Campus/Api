@@ -12,7 +12,7 @@ class PlayersRemove extends Command {
   public description: string = "Supprime des joueurs (par leur nom ou leur id)";
   public path: string = "/players/delete";
   public type: CommandType = CommandType.post;
-  public data: { players: [ {ID : VarType, name : VarType} ] } = { players: [{ ID: {type: "number", description: "L'id du player à détruire (facultatif si utilise le name)", optional: false}, name: {type: "string", description: "Le nom du player à détruire (facultatif si utilise l'id')", optional: false} }] };
+  public data: { players: [ {ID : VarType, name : VarType} ] } = { players: [{ ID: {type: "number", description: "L'id du player à détruire (facultatif si utilise le name)", optional: false}, name: {type: "string", description: "Le nom du player à détruire (facultatif si utilise l'id)", optional: false} }] };
   public out: { message: VarType } = { message: { type: "string", description: "message d'erreur/de succès", optional: false } };
 
   run(req: Request, res: Response) {
