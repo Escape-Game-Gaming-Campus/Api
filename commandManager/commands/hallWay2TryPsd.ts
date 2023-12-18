@@ -10,7 +10,7 @@ import { objs } from "../../constants/object";
 class HallWay2TryPsd extends Command {
   constructor() { super(); }
 
-  public name: string = "Try PasswordPC";
+  public name: string = "Try PasswordPC HallWay2";
   public description: string = "Permet de vérifier si le mot de passe pour débloquer Totoro est bon";
   public path: string = "/hallWay2/tryPsd";
   public type: CommandType = CommandType.post;

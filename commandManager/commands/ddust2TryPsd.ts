@@ -8,7 +8,7 @@ import { VarType } from "../../utils/doc";
 class Ddust2TryPsd extends Command {
   constructor() { super(); }
 
-  public name: string = "Try PasswordPC";
+  public name: string = "Try PasswordPC DDust2";
   public description: string = "Permet de vérifier si le mot de passe pour débloquer Totoro est bon";
   public path: string = "/ddust2/tryPsd";
   public type: CommandType = CommandType.post;
