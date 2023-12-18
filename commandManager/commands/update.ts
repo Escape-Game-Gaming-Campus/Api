@@ -4,6 +4,7 @@ import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
 import { psdPC } from "../../utils/enigms/ddust2/passwordpc";
 import { VarType } from "../../utils/doc";
+import { psdKill } from "../../utils/enigms/hallWay2/passwordKill";
 
 class Update extends Command {
   constructor() { super(); }
@@ -20,7 +21,7 @@ class Update extends Command {
     pusherManager.executePusher("notesChange");
     pusherManager.executePusher("updatePlayers");
     pusherManager.executePusher("updateInventory");
-    pusherManager.executePusher("hallWay2TryPsd");
+    pusherManager.executePusher("hallWay2TryPsd", { psdValid: psdKill.psdValid }, true);
     pusherManager.executePusher("ddust2TryPsd", { psdValid: psdPC.psdValid }, true);
 
     if (res === null) return console.log("Clients updated succesfully");

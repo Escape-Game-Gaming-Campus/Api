@@ -11,7 +11,7 @@ class HallWay2TryPsd extends Command {
   constructor() { super(); }
 
   public name: string = "Try PasswordPC HallWay2";
-  public description: string = "Permet de vérifier si le mot de passe pour débloquer Totoro est bon";
+  public description: string = "Enigme scene de crime pour avoir une ampoule rouge";
   public path: string = "/hallWay2/tryPsd";
   public type: CommandType = CommandType.post;
   public data: { psd: VarType } = { psd: { type: "string", description: "Mot de passe a essayer", optional: false } };

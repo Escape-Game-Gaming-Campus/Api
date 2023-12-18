@@ -29,24 +29,24 @@ pusherManager.void();
 
 app.listen(APPPort, () => {
   writeFile("../../.doc/Writerside/topics/Commands.md", doc.getDoc()[0], function (err) {
-    if (err) {
-      return console.error(err);
+    if (err && AppConfig.DetailLogs) {
+      console.error(err);
     }
-    if (AppConfig.DetailLogs) {
+    else if (AppConfig.DetailLogs) {
       console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for commands created!" + FORMAT_TEXT.RESET);
     }
     writeFile("../../.doc/Writerside/topics/Pusher.md", doc.getDoc()[1], function (err) {
-      if (err) {
-        return console.error(err);
+      if (err && AppConfig.DetailLogs) {
+        console.error(err);
       }
-      if (AppConfig.DetailLogs) {
+      else if (AppConfig.DetailLogs) {
         console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for pusher created!" + FORMAT_TEXT.RESET);
       }
       writeFile("../../.doc/Writerside/snippet/AppConfig.json", readFileSync("../constants/AppConfig.json", "utf8"), function (err) {
-        if (err) {
-          return console.error(err);
+        if (err && AppConfig.DetailLogs) {
+          console.error(err);
         }
-        if (AppConfig.DetailLogs) {
+        else if (AppConfig.DetailLogs) {
           console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for AppConfig.json created!" + FORMAT_TEXT.RESET);
         }
         console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
