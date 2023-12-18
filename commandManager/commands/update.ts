@@ -18,6 +18,7 @@ class Update extends Command {
   run(req: Request, res: Response) {
     pusherManager.executePusher("helloWorld");
     pusherManager.executePusher("notesChange");
+    pusherManager.executePusher("updatePlayers");
     pusherManager.executePusher("updateInventory");
     pusherManager.executePusher("ddust2TryPsd", { psdValid: psdPC.psdValid }, true);
 
