@@ -49,7 +49,7 @@ app.listen(APPPort, () => {
         else if (AppConfig.DetailLogs) {
           console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for AppConfig.json created!" + FORMAT_TEXT.RESET);
         }
-        console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
+        console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}\n` + FORMAT_TEXT.RESET);
         require("./commandManager/commands/update").run(null, null);
       });
     });
