@@ -1,3 +1,4 @@
+import { VarType } from "../utils/doc";
 import * as AppConfig from "./appConfig.json";
 
 type Object = 
@@ -7,24 +8,34 @@ type Object =
     texture : string,
 }
 
+export var ObjectVarType: {
+    name : VarType,
+    UUID : VarType,
+    texture : VarType,
+} = {
+    name : { type: "string", description: "Nom de l'objet", optional: false },
+    UUID : { type: "number", description: "UUID de l'objet", optional: false },
+    texture : { type: "string", description: "Lien pour accéder à la texture de l'objet (utiliser de préférence AppConfig.json pour obtenir le lien quand il est set)", optional: false },
+}
+
 export default Object;
 
 export var objs : Object[] = [
     {
         name : "Ampoule jaune",
         UUID : 0,
-        texture : `${AppConfig.HOST}:${AppConfig.PORT}/img/ampouleY.png`
+        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleY.png`
     },{
         name : "Ampoule rouge",
         UUID : 1,
-        texture : `${AppConfig.HOST}:${AppConfig.PORT}/img/ampouleR.png`
+        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleR.png`
     },{
         name : "Ampoule verte",
         UUID : 2,
-        texture : `${AppConfig.HOST}:${AppConfig.PORT}/img/ampouleG.png`
+        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleG.png`
     },{
         name : "Ampoule bleue",
         UUID : 3,
-        texture : `${AppConfig.HOST}:${AppConfig.PORT}/img/ampouleB.png`
+        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleB.png`
     }
 ];
