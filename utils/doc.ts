@@ -47,7 +47,7 @@ export class genDoc {
 
                     this.docCmd += "\n\n### **" + cmdFinded.name + "**\n\n"
                     this.docCmd += cmdFinded.description + "\n\n"
-                    this.docCmd += "- __Path__: [" + cmdFinded.path + "](" + AppConfig.API_HOST + ":" + AppConfig.API_PORT + cmdFinded.path + ")\n"
+                    this.docCmd += "- __Path__: [" + cmdFinded.path + "](" + AppConfig.API.HOST + ":" + AppConfig.API.PORT + cmdFinded.path + ")\n"
                     this.docCmd += "- __Input__: "
                     var temp = this.getType(cmdFinded.data)
                     if (temp !== "undefined") this.docCmd += "\n\n" + temp

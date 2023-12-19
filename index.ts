@@ -11,11 +11,11 @@ import * as AppConfig from './constants/appConfig.json';
 const Pusher = require("pusher");
 
 export const pusher = new Pusher({
-  appId: "1720823",
-  key: "39f939b9f53716caf5d8",
-  secret: "201eb1f9e95745623191",
-  cluster: "eu",
-  useTLS: true
+  appId: AppConfig.PUSHER.APP_ID,
+  key: AppConfig.PUSHER.KEY,
+  secret: AppConfig.PUSHER.SECRET,
+  cluster: AppConfig.PUSHER.CLUSTER,
+  useTLS: AppConfig.PUSHER.USE_TLS
 });
 
 export const app = express();
