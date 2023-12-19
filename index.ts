@@ -49,8 +49,16 @@ app.listen(APPPort, () => {
         else if (AppConfig.DetailLogs) {
           console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for AppConfig.json created!" + FORMAT_TEXT.RESET);
         }
-        console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}\n` + FORMAT_TEXT.RESET);
-        require("./commandManager/commands/update").run(null, null);
+        writeFile("../../3Dverse/src/_3dverseEngine/AppConfig.json", readFileSync("../constants/AppConfig.json", "utf8"), function (err) {
+          if (err && AppConfig.DetailLogs) {
+            console.error(err);
+          }
+          else if (AppConfig.DetailLogs) {
+            console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "AppConfig.json duplicated for the front" + FORMAT_TEXT.RESET);
+          }
+          console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}\n` + FORMAT_TEXT.RESET);
+          require("./commandManager/commands/update").run(null, null);
+        });
       });
     });
   });
