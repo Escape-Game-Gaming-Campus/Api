@@ -7,6 +7,7 @@ import Object from './constants/object';
 import { genDoc } from './utils/doc';
 import { readFileSync, writeFile } from 'fs';
 import * as AppConfig from './constants/appConfig.json';
+import axios from 'axios';
 
 const Pusher = require("pusher");
 
@@ -51,6 +52,28 @@ app.listen(APPPort, () => {
         }
         console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
         require("./commandManager/commands/update").run(null, null);
+
+        const options = {
+          method: 'GET',
+          url: 'https://api.lifx.com/v1/lights/all',
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer `
+          }
+        };
+
+        axios
+          .request(options)
+          .then(function (response) {
+            writeFile("../lifx.json", JSON.stringify(response.data, null, 2), function (err) {
+              console.log("sended");
+            });
+          })
+          .catch(function (error) {
+            writeFile("../lifx.json", JSON.stringify(error, null, 2), function (err) {
+              console.error("error");
+            });
+          });
       });
     });
   });
