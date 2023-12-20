@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import CommandManager from "./commandManager/commandManager";
 import pusherManager from './pusherManager/pusherManager';
@@ -7,7 +7,7 @@ import Object from './constants/object';
 import { genDoc } from './utils/doc';
 import { readFileSync, writeFile } from 'fs';
 import * as AppConfig from './constants/appConfig.json';
-import axios from 'axios';
+import lights from './utils/lights';
 
 const Pusher = require("pusher");
 
@@ -19,7 +19,7 @@ export const pusher = new Pusher({
   useTLS: AppConfig.PUSHER.USE_TLS
 });
 
-export const app = express();
+export var app: Express = express();
 export const APPPort = 3001;
 export const doc = new genDoc();
 app.use(express.json());
@@ -29,59 +29,39 @@ CommandManager();
 pusherManager.void();
 
 app.listen(APPPort, () => {
-  writeFile("../../.doc/Writerside/topics/Commands.md", doc.getDoc()[0], function (err) {
-    if (err && AppConfig.DetailLogs) {
-      console.error(err);
-    }
-    else if (AppConfig.DetailLogs) {
-      console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for commands created!" + FORMAT_TEXT.RESET);
-    }
-    writeFile("../../.doc/Writerside/topics/Pusher.md", doc.getDoc()[1], function (err) {
+  lights.getLights(() => {
+    writeFile("../../.doc/Writerside/topics/Commands.md", doc.getDoc()[0], function (err) {
       if (err && AppConfig.DetailLogs) {
         console.error(err);
       }
       else if (AppConfig.DetailLogs) {
-        console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for pusher created!" + FORMAT_TEXT.RESET);
+        console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for commands created!" + FORMAT_TEXT.RESET);
       }
-      writeFile("../../.doc/Writerside/snippet/AppConfig.json", readFileSync("../constants/AppConfig.json", "utf8"), function (err) {
+      writeFile("../../.doc/Writerside/topics/Pusher.md", doc.getDoc()[1], function (err) {
         if (err && AppConfig.DetailLogs) {
           console.error(err);
         }
         else if (AppConfig.DetailLogs) {
-          console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for AppConfig.json created!" + FORMAT_TEXT.RESET);
+          console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for pusher created!" + FORMAT_TEXT.RESET);
         }
-        console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET);
-        require("./commandManager/commands/update").run(null, null);
-
-        axios.request({
-          method: 'GET',
-          url: 'https://api.lifx.com/v1/lights/all',
-          headers: {
-            accept: 'application/json',
-            Authorization: `Bearer `
-          }
-
-        }).then(function (response) {
-          writeFile("../lifx.json", JSON.stringify(response.data, null, 2), function (err) {
-            console.log("sended");
-          });
-
-        }).catch(function (error) {
-          writeFile("../lifx.json", JSON.stringify(error, null, 2), function (err) {
-            console.error("error");
-          });
-          
-        });
-
-        writeFile("../../3Dverse/src/_3dverseEngine/AppConfig.json", readFileSync("../constants/AppConfig.json", "utf8"), function (err) {
+        writeFile("../../.doc/Writerside/snippet/AppConfig.json", readFileSync("../constants/AppConfig.json", "utf8"), function (err) {
           if (err && AppConfig.DetailLogs) {
             console.error(err);
           }
           else if (AppConfig.DetailLogs) {
-            console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "AppConfig.json duplicated for the front" + FORMAT_TEXT.RESET);
+            console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "Documentation for AppConfig.json created!" + FORMAT_TEXT.RESET);
           }
-          console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}\n` + FORMAT_TEXT.RESET);
-          require("./commandManager/commands/update").run(null, null);
+
+          writeFile("../../3Dverse/src/_3dverseEngine/AppConfig.json", readFileSync("../constants/AppConfig.json", "utf8"), function (err) {
+            if (err && AppConfig.DetailLogs) {
+              console.error(err);
+            }
+            else if (AppConfig.DetailLogs) {
+              console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "AppConfig.json duplicated for the front" + FORMAT_TEXT.RESET);
+            }
+            console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET + '\n');
+            require("./commandManager/commands/update").run(null, null);
+          });
         });
       });
     });

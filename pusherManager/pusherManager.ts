@@ -30,6 +30,7 @@ class pusherManger {
     public void() { };
 
     public executePusher(event: string, data: object = {}, force = false) {
+        if (!AppConfig.PUSHER.IS_ACTIVE) return;
         this.allPushers.forEach(pusherFinded => {
             if (pusherFinded.eventName == event) {
                 const res : object | void = pusherFinded.run(data, force);
