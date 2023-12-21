@@ -10,7 +10,7 @@ class LightbulbsRemove extends Command {
 
   public name: string = "Remove from list";
   public description: string = "Retire un objet de la liste";
-  public path: string = "/lightbulb/remove";
+  public path: string = "/lightbulbs/remove";
   public type: CommandType = CommandType.delete;
   public data: { objs: { name: VarType, uuid: VarType, base:VarType}[] } = { objs: [{ name: { type: "string", description: "Nom de l'objet à ajouter (facultatif si utilise le UUID)", optional: false }, uuid: { type: "number", description: "UUID de l'objet à ajouter (facultatif si utilise le nom)", optional: false },base: {type: "number",description: "numéro du socle sur lequel l'ampoule est",optional: true} }] };
   public out: { message: VarType } = { message: { type: "string", description: "message d'erreur/de succès", optional: false } };

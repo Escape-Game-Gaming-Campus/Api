@@ -9,13 +9,14 @@ class LightbulbSwitchOn extends Command {
   
     public name: string = "Switch on a lightbulb";
     public description: string = "Allumer une ampoule";
-    public path: string = "/lightbulb/switchon";
+    public path: string = "/lightbulbs/switchon";
     public type: CommandType = CommandType.post;
+    public data: undefined = undefined;
     public out: { message: VarType } = { message: { type: "string", description: "message d'erreur/de succès", optional: false } };
   
     run(req: Request, res: Response) {
         const GCLight = lights.getLight({label:"GC light"});
-        GCLight?.setState({power:"on",brightness:1.0},()=>{
+        GCLight?.setState({power:"on", brightness:1.0, duration: 0},()=>{
             // console.log(GCLight?.power);
         })
     }
