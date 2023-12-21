@@ -9,7 +9,7 @@ const emptyObject: Object = { UUID: -1, name: "empty", texture: "" };
 export type lightsBulbsBaseIndex = 0 | 1 | 2;
 
 class Lightbulbs {
-    private validArray: [Object, Object, Object, Object] = [objs[1], objs[2], objs[3], objs[0]];
+    private validArray: [Object, Object, Object, Object] = [objs[1], objs[3], objs[2], objs[0]];
     private array: [Object, Object, Object, Object] = [emptyObject, emptyObject, emptyObject, objs[0]];
     private valid: [boolean, boolean, boolean, boolean] = [false, false, false, true];
     private lights ?: Light;
