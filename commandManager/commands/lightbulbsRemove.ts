@@ -13,7 +13,7 @@ class LightbulbsAdd extends Command {
   public description: string = "Retire une ampoule à la liste";
   public path: string = "/lightbulbs/remove";
   public type: CommandType = CommandType.delete;
-  public data: { bases: VarType } = { bases: { type: "number[]", description: "Numéro de la/les base(s) à vider", optional: false } };
+  public data: { bases: VarType } = { bases: { type: "number[]", description: "Numéro de la/les base(s) à vider (0 | 1 | 2 | 3)", optional: false } };
   public out: { message: VarType } = { message: { type: "string", description: "message d'erreur/de succès", optional: false } };
 
   run(req: Request, res: Response) {

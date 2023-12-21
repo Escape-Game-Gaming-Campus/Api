@@ -6,7 +6,7 @@ import lights, { GroupLight, Light } from "./lights";
 
 const emptyObject: Object = { UUID: -1, name: "empty", texture: "" };
 
-export type lightsBulbsBaseIndex = 0 | 1 | 2;
+export type lightsBulbsBaseIndex = 0 | 1 | 2 | 3;
 
 class Lightbulbs {
     private validArray: [Object, Object, Object, Object] = [objs[1], objs[3], objs[2], objs[0]];
@@ -24,17 +24,20 @@ class Lightbulbs {
     get Valid() { return this.valid; }
 
     public insert(object: Object, base: lightsBulbsBaseIndex = 0) {
+        if (base > 3 || base < 0) return;
         this.delete(base);
         this.array[base] = object;
-        getInventory.delete(object);
+        getInventory.delete(object.UUID);
         this.checkValid();
     }
 
     public delete(object: Object | lightsBulbsBaseIndex) {
         if (typeof object === "number") {
+            if (object > 3 || object < 0) return;
             if (this.array[object].UUID !== emptyObject.UUID) getInventory.insert(this.array[object]);
             this.array[object] = emptyObject;
         } else {
+            if (object.UUID > 3 || object.UUID < 0) return;
             if (object.UUID !== emptyObject.UUID) getInventory.insert(object);
             this.array.forEach((e, i) => {
                 if (e.UUID === object.UUID) this.array[i] = emptyObject;

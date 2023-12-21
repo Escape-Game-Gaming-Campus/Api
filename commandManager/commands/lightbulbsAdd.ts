@@ -13,7 +13,7 @@ class LightbulbsAdd extends Command {
   public description: string = "Ajoute une ampoule à la liste";
   public path: string = "/lightbulbs/add";
   public type: CommandType = CommandType.post;
-  public data: { objs: { name: VarType, uuid: VarType, base:VarType}[] } = { objs: [{ name: { type: "string", description: "Nom de l'ampoule à poser (facultatif si utilise le UUID)", optional: false }, uuid: { type: "number", description: "UUID de l'ampoule à poser (facultatif si utilise le nom)", optional: false }, base: {type: "number",description: "numéro du socle sur lequel est l'ampoule (0 | 1 | 2)", optional: false} }] };
+  public data: { objs: { name: VarType, uuid: VarType, base:VarType}[] } = { objs: [{ name: { type: "string", description: "Nom de l'ampoule à poser (facultatif si utilise le UUID)", optional: false }, uuid: { type: "number", description: "UUID de l'ampoule à poser (facultatif si utilise le nom)", optional: false }, base: {type: "number",description: "numéro du socle sur lequel est l'ampoule (0 | 1 | 2 | 3)", optional: false} }] };
   public out: { message: VarType } = { message: { type: "string", description: "message d'erreur/de succès", optional: false } };
 
   run(req: Request, res: Response) {
