@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import CommandType from "../../constants/commandType";
 import { Command } from "../command";
 import pusherManager from "../../pusherManager/pusherManager";
-import { objs } from "../../constants/object";
 import { VarType } from "../../utils/doc";
 import { lightsBulbsBaseIndex, getLightbulbs } from "../../utils/lightbulbs";
 
