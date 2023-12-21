@@ -1,8 +1,9 @@
-import Object from "../constants/object";
+import Object, { objs } from "../constants/object";
 
 class Lightbulbs
 {
     size : number;
+    validArray : Object[] = [objs[1], objs[2], objs[3], objs[0]];
     array : Object[] = [];
 
     constructor(size : number) 
