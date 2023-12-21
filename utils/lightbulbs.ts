@@ -1,5 +1,7 @@
+import { inventory } from "..";
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import Object, { objs } from "../constants/object";
+import { getInventory } from "./inventory";
 import lights, { GroupLight, Light } from "./lights";
 
 const emptyObject: Object = { UUID: -1, name: "empty", texture: "" };
@@ -16,23 +18,24 @@ class Lightbulbs {
     public setUp() {
         this.lights = lights.getLight({label: "GC light"});
         this.groupLights = this.lights?.Group;
-        this.groupLights?.setState({power: "off"}, (res) => {
-            console.log(res);
-        });
-        console.log(BG_COLOR_TEXT.CYAN + "Lightbulbs initialized" + FORMAT_TEXT.RESET)
+        this.groupLights?.setState({power: "off"});
     }
 
     get Valid() { return this.valid; }
 
     public insert(object: Object, base: lightsBulbsBaseIndex = 0) {
+        this.delete(base);
         this.array[base] = object;
+        getInventory.delete(object);
         this.checkValid();
     }
 
     public delete(object: Object | lightsBulbsBaseIndex) {
         if (typeof object === "number") {
+            if (this.array[object].UUID !== emptyObject.UUID) getInventory.insert(this.array[object]);
             this.array[object] = emptyObject;
         } else {
+            if (object.UUID !== emptyObject.UUID) getInventory.insert(object);
             this.array.forEach((e, i) => {
                 if (e.UUID === object.UUID) this.array[i] = emptyObject;
             });

@@ -32,6 +32,7 @@ class LightbulbsAdd extends Command {
     });
     if (updated) {
       pusherManager.executePusher("updateLightbulbs");
+      pusherManager.executePusher("updateInventory");
       res.status(200).json({ message: "Bulbs removed with success" });
     } else {
       res.status(404).json({ message: "Bulb not found" });
