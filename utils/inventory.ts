@@ -34,10 +34,11 @@ class Inventory
 
     public delete(object : Object | number, onlyFirst : boolean = true) 
     {
-        for (let index = 0; index < this.array.length; index++) {
-            if ((object as Object).UUID ? this.array[index].UUID === (object as Object).UUID : this.array[index].UUID === object)
+        this.sortByUUID();
+        for (let i = 0; i < this.array.length; i++) {
+            if ((object as Object).UUID ? this.array[i].UUID === (object as Object).UUID : this.array[i].UUID === (object as number))
             {
-                this.array.splice(index, 1) // number of element wich are delete at index
+                this.array.splice(i, 1) // number of element wich are delete at index
                 if (onlyFirst) return;
             }
         }

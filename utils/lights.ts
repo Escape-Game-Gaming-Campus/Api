@@ -3,12 +3,14 @@ import { writeFile } from "fs";
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import * as AppConfig from '../constants/appConfig.json';
 
+export type powered = "on" | "off";
+
 type lightResponseType = {
     "id": string,
     "uuid": string,
     "label": string,
     "connected": boolean,
-    "power": "on" | "off",
+    "power": powered,
     "color": {
         "hue": number,
         "saturation": number,
@@ -134,7 +136,7 @@ class Lights {
         });
     }
 
-    public setStates(state: { power?: "on" | "off", brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | string, label: string}[] }) => void, random: boolean = false, light: Light | GroupLight | LocationLight | {ID: "all", LightClassType: "All"} = {ID: "all", LightClassType: "All"}) {
+    public setStates(state: { power?: powered, brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | string, label: string}[] }) => void, random: boolean = false, light: Light | GroupLight | LocationLight | {ID: "all", LightClassType: "All"} = {ID: "all", LightClassType: "All"}) {
         var thiss: Light[] = [];
         var id: string = light.ID;
         switch (light.LightClassType) {
@@ -224,7 +226,7 @@ export class Light {
     private uuid: string;
     private label: string;
     private connected: boolean;
-    private power: "on" | "off";
+    private power: powered;
     private color: {
         hue: number,
         saturation: number,
@@ -290,7 +292,7 @@ export class Light {
     set Group(group: typeof this.group) { this.group = group; }
     set Location(location: typeof this.location) { this.location = location; }    
 
-    public setState(state: { power?: "on" | "off", brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | "timed_out" | string, label: string}[] }) => void) {
+    public setState(state: { power?: powered, brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | "timed_out" | string, label: string}[] }) => void) {
         this.lightsList.setStates(state, callback, false, this);
     }
 }
@@ -334,7 +336,7 @@ export class GroupLight {
         });
     }
 
-    public setState(state: { power?: "on" | "off", brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | string, label: string}[] }) => void, random: boolean = false) {
+    public setState(state: { power?: powered, brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | string, label: string}[] }) => void, random: boolean = false) {
         this.lightsList.setStates(state, callback, random, this);
     }
 }
@@ -378,7 +380,7 @@ export class LocationLight {
         });
     }
 
-    public setState(state: { power?: "on" | "off", brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | string, label: string}[] }) => void, random: boolean = false) {
+    public setState(state: { power?: powered, brightness?: number, infrared?: number, duration?: number, fast?: boolean } = { power: "on" }, callback?: (res: null | { results: {id : string, status: "ok" | string, label: string}[] }) => void, random: boolean = false) {
         this.lightsList.setStates(state, callback, random, this);
     }
 }

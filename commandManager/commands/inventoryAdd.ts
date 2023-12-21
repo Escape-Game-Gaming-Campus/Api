@@ -34,8 +34,7 @@ class InventoryAdd extends Command {
           getInventory.insert(obj);
           endForeach = true;
           updated = true;
-        }
-        if (obj.name === e.name) {
+        } else if (obj.name === e.name) {
           getInventory.insert(obj);
           endForeach = true;
           updated = true;

@@ -33,8 +33,7 @@ class InventoryRemove extends Command {
           getInventory.delete(obj);
           endForeach = true;
           updated = true;
-        }
-        if (obj.name === e.name) {
+        } else if (obj.name === e.name) {
           getInventory.delete(obj);
           endForeach = true;
           updated = true;

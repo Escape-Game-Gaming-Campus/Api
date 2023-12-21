@@ -23,6 +23,7 @@ class Update extends Command {
     pusherManager.executePusher("updateInventory");
     pusherManager.executePusher("hallWay2TryPsd", { psdValid: psdKill.psdValid }, true);
     pusherManager.executePusher("ddust2TryPsd", { psdValid: psdPC.psdValid }, true);
+    pusherManager.executePusher("updateLightbulbs");
 
     if (res === null) return console.log("Clients updated succesfully");
     res.status(200).json({ message: "Clients updated succesfully" });
