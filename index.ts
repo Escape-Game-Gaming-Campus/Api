@@ -8,9 +8,11 @@ import { genDoc } from './utils/doc';
 import { readFileSync, writeFile } from 'fs';
 import * as AppConfig from './constants/appConfig.json';
 import lights from './utils/lights';
+import { getLightbulbs } from './utils/lightbulbs';
+
 
 const Pusher = require("pusher");
-
+            
 export const pusher = new Pusher({
   appId: AppConfig.PUSHER.APP_ID,
   key: AppConfig.PUSHER.KEY,
@@ -24,9 +26,6 @@ export const APPPort = 3001;
 export const doc = new genDoc();
 app.use(express.json());
 app.use(cors());
-
-CommandManager();
-pusherManager.void();
 
 app.listen(APPPort, () => {
   lights.getLights(() => {
@@ -59,6 +58,11 @@ app.listen(APPPort, () => {
             else if (AppConfig.DetailLogs) {
               console.log(BG_COLOR_TEXT.YELLOW + COLOR_TEXT.BLACK + "AppConfig.json duplicated for the front" + FORMAT_TEXT.RESET);
             }
+
+            pusherManager.setUp();
+            getLightbulbs.setUp();
+            CommandManager();
+
             console.log(BG_COLOR_TEXT.GREEN + COLOR_TEXT.BLACK + `Server is running on port ${APPPort}` + FORMAT_TEXT.RESET + '\n');
             require("./commandManager/commands/update").run(null, null);
           });

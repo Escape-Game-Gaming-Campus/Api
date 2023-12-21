@@ -1,62 +1,57 @@
+import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import Object, { objs } from "../constants/object";
+import lights, { GroupLight, Light } from "./lights";
 
-class Lightbulbs
-{
-    size : number;
-    validArray : Object[] = [objs[1], objs[2], objs[3], objs[0]];
-    array : Object[] = [];
+const emptyObject: Object = { UUID: -1, name: "empty", texture: "" };
 
-    constructor(size : number) 
-    {
-        this.size = size;
-    }
+export type lightsBulbsBaseIndex = 0 | 1 | 2;
 
-    public insert(object : Object)
-    {
-        if (this.size > this.array.length)
-        {
-            var exist = false;
-            this.array.forEach((e) => {
-                if (e.UUID === object.UUID) exist = true;
-            });
-            if (exist) return;
-            this.array.push(object);
-        } else {
-            console.warn(`la liste n'a pas assez d'espace pour stocker un "${object.name}" supplémentaire ${this.array.length}/${this.size}`)
-        }
-    }
+class Lightbulbs {
+    private validArray: [Object, Object, Object, Object] = [objs[1], objs[2], objs[3], objs[0]];
+    private array: [Object, Object, Object, Object] = [emptyObject, emptyObject, emptyObject, objs[0]];
+    private valid: [boolean, boolean, boolean, boolean] = [false, false, false, true];
+    private lights ?: Light;
+    private groupLights ?: GroupLight;
 
-    public insertList(objects : Object[])
-    {
-        for (let index = 0; index < objects.length; index++) {
-            this.insert(objects[index]);
-        }
-    }
-
-    public delete(object : Object | number, onlyFirst : boolean = true) 
-    {
-        for (let index = 0; index < this.array.length; index++) {
-            if ((object as Object).UUID ? this.array[index].UUID === (object as Object).UUID : this.array[index].UUID === object)
-            {
-                this.array.splice(index, 1) // number of element wich are delete at index
-                if (onlyFirst) return;
-            }
-        }
-    }
-
-    public deleteList(objects : (Object | number)[], onlyFirst : boolean = true) 
-    {
-        for (let index = 0; index < objects.length; index++) {
-            this.delete(objects[index], onlyFirst)
-        }
-    }
-
-    public sortByUUID()
-    {
-        this.array.sort((a, b) => {
-            return a.UUID - b.UUID;
+    public setUp() {
+        this.lights = lights.getLight({label: "GC light"});
+        this.groupLights = this.lights?.Group;
+        this.groupLights?.setState({power: "off"}, (res) => {
+            console.log(res);
         });
+        console.log(BG_COLOR_TEXT.CYAN + "Lightbulbs initialized" + FORMAT_TEXT.RESET)
+    }
+
+    get Valid() { return this.valid; }
+
+    public insert(object: Object, base: lightsBulbsBaseIndex = 0) {
+        this.array[base] = object;
+        this.checkValid();
+    }
+
+    public delete(object: Object | lightsBulbsBaseIndex) {
+        if (typeof object === "number") {
+            this.array[object] = emptyObject;
+        } else {
+            this.array.forEach((e, i) => {
+                if (e.UUID === object.UUID) this.array[i] = emptyObject;
+            });
+        }
+        this.checkValid();
+    }
+
+    private checkValid() {
+        this.valid = [false, false, false, false];
+        this.array.forEach((e, i) => {
+            if (e.UUID === this.validArray[i].UUID) this.valid[i] = true;
+        });
+
+        if (this.valid[0] && this.valid[1] && this.valid[2] && this.valid[3]) {
+            if (this.lights?.Power === "off") this.groupLights?.setState({power: "on"});
+        } else {
+            if (this.lights?.Power === "on") this.groupLights?.setState({power: "off"});
+        }
     }
 }
 
-export var getLightbulbs = new Lightbulbs(10);
+export var getLightbulbs = new Lightbulbs();
