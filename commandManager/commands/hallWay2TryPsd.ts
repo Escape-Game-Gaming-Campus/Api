@@ -34,6 +34,7 @@ class HallWay2TryPsd extends Command {
     if (req.body.psd === psdKill.psd) {
       psdValid = true;
       getInventory.insert(objs[1]); //add ampoule rouge
+      getInventory.insert(objs[2]);
       pusherManager.executePusher("updateInventory");
     }
     pusherManager.executePusher("hallWay2TryPsd", { psdValid: psdValid });
