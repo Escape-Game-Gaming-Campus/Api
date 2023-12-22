@@ -37,3 +37,4 @@
 */[Xx]64/Debug/
 dist/
 node_modules/
+lifx*.json
