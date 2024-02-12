@@ -19,7 +19,7 @@ export const pusher = new Pusher({
 });
 
 export const app = express();
-export const APPPort = 3001;
+export const APPPort = 3000;
 export const doc = new genDoc();
 app.use(express.json());
 app.use(cors());
