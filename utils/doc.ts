@@ -25,9 +25,9 @@ export class genDoc {
             function readFile(data: string, cmd: Command) {
                 var dt = data.split("pusherManager_1.default.executePusher(\"");
                 dt.shift();
+                pshsInCmds[cmd.name] = []
                 dt.forEach(e => {
                     var pshName = e.split("\"")[0];
-                    if (!pshsInCmds[cmd.name]) pshsInCmds[cmd.name] = [];
                     pshsInCmds[cmd.name].push(pshName);
                 })
             }
