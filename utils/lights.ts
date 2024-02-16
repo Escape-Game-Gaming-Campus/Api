@@ -1,7 +1,7 @@
 import axios from "axios";
 import { writeFile } from "fs";
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
-import AppConfig from '../constants/appConfig.json';
+import AppConfig from '../constants/AppConfig.json';
 
 export type powered = "on" | "off";
 
