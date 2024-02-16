@@ -2,7 +2,7 @@ import { readdirSync } from "fs";
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import pusherClass from "./pusher";
 import pusherChannels from "../constants/pusherChannels";
-import * as AppConfig from "../constants/appConfig.json";
+import AppConfig from "../constants/appConfig.json";
 import { pusher } from "..";
 
 class pusherManger {
