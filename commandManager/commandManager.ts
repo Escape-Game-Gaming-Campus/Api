@@ -3,7 +3,7 @@ import { Command } from "./command";
 import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from "../constants/colors";
 import { APPPort, app } from "..";
 import CommandType from "../constants/commandType";
-import * as AppConfig from "../constants/appConfig.json";
+import AppConfig from "../constants/appConfig.json";
 
 export default function CommandManager() {
     console.log(BG_COLOR_TEXT.RED + "Loading commands..." + FORMAT_TEXT.RESET)

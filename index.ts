@@ -6,7 +6,7 @@ import { BG_COLOR_TEXT, COLOR_TEXT, FORMAT_TEXT } from './constants/colors';
 import Object from './constants/object';
 import { genDoc } from './utils/doc';
 import { readFileSync, writeFile } from 'fs';
-import * as AppConfig from './constants/appConfig.json';
+import AppConfig from './constants/appConfig.json';
 import lights from './utils/lights';
 import { getLightbulbs } from './utils/lightbulbs';
 

@@ -1,5 +1,5 @@
 import { VarType } from "../utils/doc";
-import * as AppConfig from "./appConfig.json";
+import AppConfig from "./appConfig.json";
 
 type Object = 
 {
