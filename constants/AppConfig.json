@@ -1,12 +1,12 @@
 {
     "FRONT": {
-        "HOST": "http://localhost",
-        "PORT": "3000"
+        "HOST": "http://www.gwenitora.com/gc/escape-game/",
+        "PORT": "80"
     },
 
     "API": {
-        "HOST": "http://localhost",
-        "PORT": "3001"
+        "HOST": "http://www.gwenitora.com",
+        "PORT": "3000"
     },
 
     "PUSHER": {
