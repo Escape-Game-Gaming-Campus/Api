@@ -1,7 +1,7 @@
 import Object, { objs } from "../constants/object";
 import { getInventory } from "./inventory";
 import lights, { GroupLight, Light } from "./lights";
-import AppConfig from "../constants/appConfig.json";
+import AppConfig from "../constants/AppConfig.json";
 
 const emptyObject: Object = { UUID: -1, name: "empty", texture: "" };
 
