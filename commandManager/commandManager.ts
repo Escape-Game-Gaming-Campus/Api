@@ -44,7 +44,7 @@ export default function CommandManager() {
         {
             console.log("  Added command '" + COLOR_TEXT.CYAN + cmd.name + FORMAT_TEXT.RESET + "'\n" + FORMAT_TEXT.UNDERSCORE + "type" + FORMAT_TEXT.RESET + ": " + COLOR_TEXT.MAGENTA + CommandType[cmd.type] + FORMAT_TEXT.RESET + "\n" + FORMAT_TEXT.UNDERSCORE + "desc" + FORMAT_TEXT.RESET + ": " + cmd.description + "\n" + FORMAT_TEXT.UNDERSCORE + "path" + FORMAT_TEXT.RESET + ": http://localhost:" + APPPort + cmd.path + "\n")
         } else {
-            console.log("Added command '" + COLOR_TEXT.CYAN + cmd.name + FORMAT_TEXT.RESET)
+            console.log("Added command '" + COLOR_TEXT.CYAN + cmd.name + FORMAT_TEXT.RESET + "'")
         }
     })
 }
