@@ -1,4 +1,4 @@
-import * as AppConfig from "./appConfig.json";
+import AppConfig from "./AppConfig.json";
 
 type Player = 
 {

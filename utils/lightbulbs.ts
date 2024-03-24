@@ -1,6 +1,7 @@
 import Object, { objs } from "../constants/object";
 import { getInventory } from "./inventory";
 import lights, { GroupLight, Light } from "./lights";
+import AppConfig from "../constants/AppConfig.json";
 
 const emptyObject: Object = { UUID: -1, name: "empty", texture: "" };
 
@@ -24,7 +25,7 @@ class Lightbulbs {
     }
 
     public setUp() {
-        this.lights = lights.getLight({ label: "GC light" });
+        this.lights = lights.getLight({ label: AppConfig.LIFX.LIGHT_NAME });
         this.groupLights = this.lights?.Group;
         this.groupLights?.setState({ power: "off" });
     }

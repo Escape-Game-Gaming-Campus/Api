@@ -3,7 +3,7 @@ import pusherClass from "../pusherManager/pusher";
 import pusherChannels from "../constants/pusherChannels";
 import { Command } from "../commandManager/command";
 import CommandType from "../constants/commandType";
-import * as AppConfig from '../constants/appConfig.json';
+import AppConfig from '../constants/AppConfig.json';
 
 export type allType = "string" | "number" | "boolean" | "string | number" | "string | boolean" | "number | boolean" | "string | number | boolean" | "string[]" | "number[]" | "boolean[]" | "(string | number)[]" | "(string | boolean)[]" | "(number | boolean)[]" | "(string | number | boolean)[]"
 export type VarType = {
