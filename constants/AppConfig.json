@@ -1,12 +1,12 @@
 {
     "FRONT": {
         "HOST": "http://www.gwenitora.com/gc/escape-game/",
-        "PORT": "80"
+        "PORT": "3000"
     },
 
     "API": {
         "HOST": "http://www.gwenitora.com",
-        "PORT": "3000"
+        "PORT": "3001"
     },
 
     "PUSHER": {
@@ -79,7 +79,8 @@
         "DIGICODE_LIGHT":"8265e45d-9e4b-4727-ab21-ee96012728f8",
         "TOTORO_DOOR_2_LIGHT":"27bef8c3-3abe-48ab-9650-2185a4074cc5",
         "TOTORO_S_KEY_LIGHT":"19c5baf1-7a5c-4444-ac20-8ba75724933b",
-        "CRIME_SCENE":"250c7776-7e6e-490f-a221-0fd3137deadb"
+        "CRIME_SCENE":"250c7776-7e6e-490f-a221-0fd3137deadb",
+        "BUTTON_LIGHT":"d4680658-c9c7-4c2b-8a2e-5e203447c359"
     },
 
     "DetailLogs": false

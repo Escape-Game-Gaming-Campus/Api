@@ -22,7 +22,7 @@ export const pusher = new Pusher({
 });
 
 export var app: Express = express();
-export const APPPort = 3000;
+export const APPPort = 3001;
 export const doc = new genDoc();
 app.use(express.json());
 app.use(cors());
