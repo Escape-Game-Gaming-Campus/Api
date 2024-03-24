@@ -24,18 +24,18 @@ export var objs : Object[] = [
     {
         name : "Ampoule jaune",
         UUID : 0,
-        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleY.png`
+        texture : `${AppConfig.FRONT.HOST}img/ampouleY.png`
     },{
         name : "Ampoule rouge",
         UUID : 1,
-        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleR.png`
+        texture : `${AppConfig.FRONT.HOST}img/ampouleR.png`
     },{
         name : "Ampoule verte",
         UUID : 2,
-        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleG.png`
+        texture : `${AppConfig.FRONT.HOST}img/ampouleG.png`
     },{
         name : "Ampoule bleue",
         UUID : 3,
-        texture : `${AppConfig.FRONT.HOST}:${AppConfig.FRONT.PORT}/img/ampouleB.png`
+        texture : `${AppConfig.FRONT.HOST}img/ampouleB.png`
     }
 ];
